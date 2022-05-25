@@ -60,3 +60,15 @@ $header_menu_style  = inspiro_get_theme_mod( 'header-menu-style' );
 		</div>
 	</div><!-- .inner-wrap -->
 </div><!-- #site-navigation -->
+<style>
+.navbar {
+
+    position: relative;
+    z-index: 200;
+    color: #fff;
+    background: #9ccfd5;
+    padding: 18px 0;
+    transition: all .5s ease-in-out;
+
+}
+</style>

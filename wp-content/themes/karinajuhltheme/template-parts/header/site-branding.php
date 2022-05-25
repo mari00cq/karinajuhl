@@ -46,3 +46,9 @@
 
 	</div><!-- .inner-wrap -->
 </div><!-- .site-branding -->
+<style>
+    #site-navigation .navbar {
+        background-color: rgb(115, 136, 131);
+
+    }
+</style>

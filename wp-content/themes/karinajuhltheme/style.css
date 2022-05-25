@@ -8,6 +8,15 @@ Description: Stylish Child Theme based on Inspiro
 
 */
 
-#masthead {
-  background-color: rgb(115, 136, 131);
+@import url("../inspiro/style.css");
+
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 7rem;
+}
+
+#colophon {
+  background-image: url("footer_traer.jpg");
 }

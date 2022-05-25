@@ -17,15 +17,22 @@
 	?>
 	<span class="copyright">
 		<span>
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'inspiro' ) ); ?>" target="_blank">
-				<?php
-				/* translators: %s: WordPress trademark */
-				printf( esc_html__( 'Powered by %s', 'inspiro' ), 'WordPress' );
-				?>
-			</a>
+            <img src="kj_logo.png" alt="kj_logo">
+			
 		</span>
-		<span>
-			<?php esc_html_e( 'Inspiro WordPress Theme by', 'inspiro' ); ?> <a href="<?php echo 'https://www.wpzoom.com/'; ?>" target="_blank" rel="nofollow">WPZOOM</a>
-		</span>
+        <span>
+            <p>Vores Info</p>
+        </span>
+	
 	</span>
 </div><!-- .site-info -->
+<style>
+      #colophon {
+  background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/cropped-logo.png")
+}
+    #colophon {
+        background-color: rgb(115, 136, 131);
+
+    }
+
+</style>
