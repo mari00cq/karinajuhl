@@ -17,7 +17,8 @@
 	?>
 	<span class="copyright">
 		<span>
-            <img src="kj_logo.png" alt="kj_logo">
+            <img src="http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/cropped-logo.png"
+ alt="kj_logo">
 			
 		</span>
         <span>
@@ -28,7 +29,10 @@
 </div><!-- .site-info -->
 <style>
       #colophon {
-  background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/cropped-logo.png")
+  background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/footer_traer.jpg");
+  background-repeat: no-repeat;
+    background-size: 140%;
+
 }
     #colophon {
         background-color: rgb(115, 136, 131);

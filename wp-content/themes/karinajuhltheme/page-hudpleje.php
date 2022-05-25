@@ -37,6 +37,13 @@ get_header(); ?>
 			<h2>Søg på type</h2>
 			<!-- <nav id="filtrering"><img data-projekt src="" alt=""></nav> -->
 			<section id="sorterings-knapper">
+				 <nav>
+    <button class="filter valgt" data-kategori="alle">Alle</button>
+    <button class="filter" data-kategori="ansigtspleje">Ansigtspleje</button>
+    <button class="filter" data-kategori="kropspleje">Kropspleje</button>
+    <button class="filter" data-kategori="haarpleje">Hårpleje</button>
+    <button class="filter" data-kategori="drikkevarer">Creme Café</button>
+  </nav>
 			
 	
 
