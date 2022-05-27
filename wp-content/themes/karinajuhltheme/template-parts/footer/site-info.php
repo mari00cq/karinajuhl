@@ -34,9 +34,5 @@
     background-size: 140%;
 
 }
-    #colophon {
-        background-color: rgb(115, 136, 131);
-
-    }
 
 </style>

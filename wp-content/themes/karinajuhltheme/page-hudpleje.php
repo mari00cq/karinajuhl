@@ -16,6 +16,64 @@
  */
 
 get_header(); ?>
+<style>
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+      .valgt {
+        background-color: rgb(245, 240, 168);
+      }
+      section {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding-inline-start: 10%;
+        padding-inline-end: 10%;
+      }
+      article {
+        border: solid 1px black;
+        padding: 20px;
+        background-color: whitesmoke;
+      }
+	  	#produkt-oversigt {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-gap: 30px;
+	
+	}
+	#produkt-oversigt img {
+		padding: 10px;
+		object-fit: cover;
+
+
+	
+	}
+	.container_article {
+		border: 2px solid black;
+		/* background-color: darkgreen; */
+		height: 400px;
+
+	
+	}
+	
+	.container_article h2 {
+		padding: 10px;
+	}
+
+	.container_article img{
+		width: 400px;
+		height: 300px;
+		align: center;
+		
+
+	}
+	.container_article h2{
+		color: black;
+		text-align: center;
+	}
+</style>
 
 <?php if ( ( is_page() && ! inspiro_is_frontpage() ) && ! has_post_thumbnail( get_queried_object_id() ) ) : ?>
 
@@ -34,42 +92,47 @@ get_header(); ?>
 
 <h1 id="overskrift">Hudpleje</h1>
 			<p>Her kan du se alle de produkter jeg fremstiller</p>
-			<h2>Søg på type</h2>
+			
 			<!-- <nav id="filtrering"><img data-projekt src="" alt=""></nav> -->
 			<section id="sorterings-knapper">
-				 <nav>
-    <button class="filter valgt" data-kategori="alle">Alle</button>
+				<nav id="filtrering"></nav>
+			</section>
+				 <!-- <nav> -->
+    <!-- <button class="filter valgt" data-kategori="alle">Alle</button>
     <button class="filter" data-kategori="ansigtspleje">Ansigtspleje</button>
     <button class="filter" data-kategori="kropspleje">Kropspleje</button>
     <button class="filter" data-kategori="haarpleje">Hårpleje</button>
-    <button class="filter" data-kategori="drikkevarer">Creme Café</button>
-  </nav>
+    <button class="filter" data-kategori="drikkevarer">Creme Café</button> -->
+  <!-- </nav> -->
 			
 	
 
-			</section>
+			
 			<h2 class="kategorititel">Alle produkter</h2>
 			
 		<section id="produkt-oversigt"></section>
-			
+			</main><!-- #main -->
 <template>
 				<article class="container_article">
 					
 					<h2></h2>
-					<img src="" alt="">
-					<p></p>
+					<img src="" alt=""class="billede">
+					<p class="beskrivelse"></p>
+					<p class="pris">Pris</p>
 </article>
 </template>
 
-		</main><!-- #main -->
+		
 <script>
 
 
-				let produkt;
+				let produkter;
+				let categories;
+				let filterProdukt;
 				
 				const liste = document.querySelector("#produkt-oversigt");
 				const skabelon = document.querySelector("template");
-				let filterProjekt = "alle";
+				// let filterProdukt = "alle";
 				document.addEventListener("DOMContentLoaded", start);
 
 				function start() {
@@ -79,7 +142,8 @@ get_header(); ?>
 
 
 
-const url = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/produkt?per_page=100";
+const dbUrl = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/produkt?per_page=100";
+const catUrl = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/categories";
 
 
 let filter = "alle";
@@ -87,25 +151,46 @@ let filter = "alle";
 
 async function getJson() {
 	console.log("getJson");
-	let response = await fetch(url); 
-	const catdata = await fetch(caturl);
+	const data = await fetch(dbUrl); 
+	const catdata = await fetch(catUrl); 
+produkter = await data.json();
+categories = await catdata.json();
+console.log(categories);
+console.log(produkter);
+// visProdukter();
+opretKnapper();
 
-	produkt = await response.json();
-
-	console.log(vis produkter);
-	visPodukter(filter);
-	opretknapper();
-	addEventListenersToButtons();
-
-	
 } 
+function opretKnapper(){
+	categories.forEach(cat =>{
+		document.querySelector("#filtrering").innerHTML += `<button class="filter" data-projekt="${cat.id}">${cat.name}</button>`
+	})
+	function addEventListenersToButtons(){
 
-// function addEventListenersToButtons() {
+	document.querySelectorAll("#filtrering button").forEach(elm => {
+		elm.addEventListener("click", filtrering);
+		})
+};
+function filtrering(){
+	filterProdukt = this.dataset.produkt;
+	console.log(filterProdukt);
 
-// 	document.querySelectorAll("#verdensmaal-knapper img").forEach(elm => {
-// 		elm.addEventListener("click", filtrerProdukter);
-// 	})
-// }
+	visProdukter();
+}
+
+function visProdukter() {
+	let temp = document.querySelector("template");
+	let container = document.querySelector("#produkt-oversigt");
+	console.log(produkter);
+	produkter.forEach(produkt => {
+
+		const klon = skabelon.cloneNode(true).content;
+		klon.querySelector("h2").textContent = produkt.title.rendered;
+		klon.querySelector("img").src = produkt.billede.guid;
+		klon.querySelector("p").innerHTML = produkt.pris + " kr";
+	
+})
+}}
 
 
 
@@ -157,3 +242,4 @@ async function getJson() {
 
 <?php
 get_footer();
+
