@@ -95,7 +95,7 @@ get_header(); ?>
 			
 			<!-- <nav id="filtrering"><img data-projekt src="" alt=""></nav> -->
 			<section id="sorterings-knapper">
-				<nav id="filtrering"><button data-produkt="alle">Alle</button></nav>
+				<nav id="filtrering"></nav>
 			</section>
 				 <!-- <nav> -->
     <!-- <button class="filter valgt" data-kategori="alle">Alle</button>
@@ -110,10 +110,10 @@ get_header(); ?>
 			
 			<h2 class="kategorititel">Alle produkter</h2>
 			
-		<section id="produktcontainer"></section>
-			
+		<section id="produkt-oversigt"></section>
+			</main><!-- #main -->
 <template>
-				<article>
+				<article class="container_article">
 					
 					<h2></h2>
 					<img src="" alt=""class="billede">
@@ -121,17 +121,17 @@ get_header(); ?>
 					<p class="pris">Pris</p>
 </article>
 </template>
-</main><!-- #main -->
+
 		
 <script>
 
 
 				let produkter;
 				let categories;
-				let filterProdukt ="alle";
+				let filterProdukt;
 				
-				// const liste = document.querySelector("#produktcontainer");
-				// const skabelon = document.querySelector("template");
+				const liste = document.querySelector("#produkt-oversigt");
+				const skabelon = document.querySelector("template");
 				// let filterProdukt = "alle";
 				document.addEventListener("DOMContentLoaded", start);
 
@@ -146,7 +146,7 @@ const dbUrl = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/produkt?per_p
 const catUrl = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/categories";
 
 
-// let filter = "alle";
+let filter = "alle";
 
 
 async function getJson() {
@@ -163,15 +163,14 @@ opretKnapper();
 } 
 function opretKnapper(){
 	categories.forEach(cat =>{
-		document.querySelector("#filtrering").innerHTML += `<button class="filter" data-produkt="${cat.id}">${cat.name}</button>`
+		document.querySelector("#filtrering").innerHTML += `<button class="filter" data-projekt="${cat.id}">${cat.name}</button>`
 	})
 	function addEventListenersToButtons(){
 
-	document.querySelectorAll("#filtrering button").forEach(elm =>{
+	document.querySelectorAll("#filtrering button").forEach(elm => {
 		elm.addEventListener("click", filtrering);
 		})
-}; 
- 
+};
 function filtrering(){
 	filterProdukt = this.dataset.produkt;
 	console.log(filterProdukt);
@@ -181,28 +180,29 @@ function filtrering(){
 
 function visProdukter() {
 	let temp = document.querySelector("template");
-	let container = document.querySelector("#produktcontainer")
-	
-	// Med parseInt laver vi teekst om til tal
+	let container = document.querySelector("#produkt-oversigt");
+	console.log(produkter);
 	produkter.forEach(produkt => {
-		if ( produkt.categories.includes(parseInt(filterProdukt))){
- 
-		
 
-		let klon = temp.cloneNode(true).content;
+		const klon = skabelon.cloneNode(true).content;
 		klon.querySelector("h2").textContent = produkt.title.rendered;
 		klon.querySelector("img").src = produkt.billede.guid;
 		klon.querySelector("p").innerHTML = produkt.pris + " kr";
-			klon.querySelector("article").addEventListener("click", () => {location.href = elm.link;
-		})
-
-		container.appendChild(klon);
-	}})
 	
-
+})
 }}
 
 
+
+// function opretknapper(){
+	
+// 	verdensmaal.forEach( function (vm){
+// 		document.querySelector("#verdensmaal-knapper").innerHTML += `<img class="filter" data-projekt="${vm.id}" name="${vm.name}" src="${vm.verdensmlslogobillede.guid}"></img>`;
+	
+// 	})
+
+// 		addEventListenersToButtons();
+// 	}
 
 // function visProdukter(filter) {
 
