@@ -41,7 +41,7 @@
 
 	.copyright p {
 		text-align: center;
-		color: black;
+		color: #394C3F;
 	}
 
 	@media screen and (max-width:480px) {
@@ -81,7 +81,7 @@
 </div><!-- .site-info -->
 <style>
       #colophon {
-  background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/Image-2.jpg");
+  background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/Image-2-1.jpg");
   background-repeat: no-repeat;
     background-size: cover;
 
