@@ -117,7 +117,7 @@ get_header(); ?>
 					
 					<h2></h2>
 					<img src="" alt=""class="billede">
-					<p class="beskrivelse"></p>
+					<p class="beskrivelse">Pris</p>
 					<p class="pris">Pris</p>
 </article>
 </template>
@@ -176,7 +176,7 @@ function filtrering(){
 function visProdukter(){
 	console.log("visProdukter");
 	container.textContent="";
-	// Med parseInt laver vi teekst om til tal
+	// Med parseInt laver vi tekst om til tal
 	produkter.forEach(produkt => {
 		if (filterProdukt=="alle"||produkt.categories.includes(parseInt(filterProdukt))){
  
