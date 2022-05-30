@@ -147,25 +147,17 @@ const catUrl = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/categories";
 
 
 // let filter = "alle";
+let temp = document.querySelector("template");
+	let container = document.querySelector("#produktcontainer");
 
-
-async function getJson() {
-	console.log("getJson");
-	const data = await fetch(dbUrl); 
-	const catdata = await fetch(catUrl); 
-produkter = await data.json();
-categories = await catdata.json();
-console.log(categories);
-console.log(produkter);
-// visProdukter();
-opretKnapper();
-
-} 
 function opretKnapper(){
 	categories.forEach(cat =>{
 		document.querySelector("#filtrering").innerHTML += `<button class="filter" data-produkt="${cat.id}">${cat.name}</button>`
+		addEventListenersToButtons();
 	})
-	function addEventListenersToButtons(){
+}
+
+function addEventListenersToButtons(){
 
 	document.querySelectorAll("#filtrering button").forEach(elm =>{
 		elm.addEventListener("click", filtrering);
@@ -173,19 +165,20 @@ function opretKnapper(){
 }; 
  
 function filtrering(){
+	console.log(this.dataset.produkt);
 	filterProdukt = this.dataset.produkt;
 	console.log(filterProdukt);
 
 	visProdukter();
 }
 
-function visProdukter() {
-	let temp = document.querySelector("template");
-	let container = document.querySelector("#produktcontainer")
 	
+function visProdukter(){
+	console.log("visProdukter");
+	container.textContent="";
 	// Med parseInt laver vi teekst om til tal
 	produkter.forEach(produkt => {
-		if ( produkt.categories.includes(parseInt(filterProdukt))){
+		if (filterProdukt=="alle"||produkt.categories.includes(parseInt(filterProdukt))){
  
 		
 
@@ -200,9 +193,21 @@ function visProdukter() {
 	}})
 	
 
-}}
+}
 
+async function getJson() {
+	console.log("getJson");
+	const data = await fetch(dbUrl); 
+	const catdata = await fetch(catUrl); 
+produkter = await data.json();
+categories = await catdata.json();
+console.log(categories);
+console.log(produkter);
 
+opretKnapper();
+visProdukter();
+
+} 
 
 // function visProdukter(filter) {
 
