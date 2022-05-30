@@ -17,13 +17,17 @@
 	?>
 	<span class="copyright">
 		<span>
-            <img src="http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/cropped-logo.png"
- alt="kj_logo">
-			
+		<p>Vores Info</p>
 		</span>
+
         <span>
-            <p>Vores Info</p>
+		<img src="http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/cropped-logo.png"
+ alt="kj_logo">
         </span>
+		
+		<span>
+			<p>Info</p>
+</span>
 	
 	</span>
 </div><!-- .site-info -->

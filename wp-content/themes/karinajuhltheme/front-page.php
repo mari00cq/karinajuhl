@@ -15,7 +15,19 @@
  * @version 1.0.0
  */
 
-get_header(); ?>
+
+
+get_header(); ?> 
+
+<style>
+ body:not(.has-archive-description):not(.has-header-image) .page-title::after, body:not(.has-archive-description):not(.has-header-image).page .entry-title::after {
+	 display:none;
+ }
+
+ .entry-meta {
+	 display:none;
+ }
+ </style>
 
 <?php if ( ( is_page() && ! inspiro_is_frontpage() ) && ! has_post_thumbnail( get_queried_object_id() ) ) : ?>
 

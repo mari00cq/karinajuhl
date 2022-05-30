@@ -9,6 +9,7 @@
  */
 
 ?>
+
 <div class="site-branding">
 	<div class="inner-wrap">
 		<?php

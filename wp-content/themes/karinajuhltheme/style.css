@@ -13,10 +13,24 @@ Description: Stylish Child Theme based on Inspiro
 h1 {
   font-size: 3rem;
 }
+
 h2 {
   font-size: 7rem;
 }
 
 #colophon {
   background-image: url("footer_traer.jpg");
+}
+
+.page .entry-content,
+.page .entry-header .inner-wrap,
+.page:not(.inspiro-front-page) .entry-footer,
+.single .entry-content,
+.single .entry-footer,
+.single .entry-header .inner-wrap {
+  display: none;
+}
+
+#content .site-content {
+  padding-top: 0%;
 }

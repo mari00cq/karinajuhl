@@ -11,6 +11,19 @@
  */
 
 ?>
+<style>
+	body:not(.has-archive-description):not(.has-header-image) .page-title::after, body:not(.has-archive-description):not(.has-header-image).page .entry-title::after {
+		display:none;
+	}
+
+	.page .entry-title, .page-title {
+		display:none;
+	}
+
+	#content.site-content {
+		padding: 0;
+	}
+</style>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
