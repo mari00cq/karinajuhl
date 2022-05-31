@@ -15,6 +15,11 @@
 		max-width: 35%;
 	}
 
+	#colophon {
+		padding-top: 3%;
+		padding-bottom: 3%;
+	}
+
 	.site-info .copyright {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -87,15 +92,15 @@
 	}
 
 	.facebook {
-		background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/facebook.png");
-		width: 25%;
-		aspect-ratio: 209/217;
+		background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/Facebook-1.png");
+		width: 13%;
+		aspect-ratio: 55/99;
 		background-size: contain;
 		background-repeat: no-repeat;
 	} 
 
 	.instagram {
-		background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/instagram.png");
+		background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/Instagarm.png");
 		width: 25%;
 		aspect-ratio: 211/208;
 		background-size: contain;

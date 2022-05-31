@@ -21,6 +21,7 @@ get_header(); ?>
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 10px;
+		margin-bottom: 3%;
 		}
 
     @media screen and (min-width:1025px) {
@@ -40,6 +41,7 @@ get_header(); ?>
         padding-inline-start: 10%;
         padding-inline-end: 10%;
 		padding-bottom: 2%;
+		cursor: pointer;
       }
 
 	  #produktcontainer h2 {
@@ -98,6 +100,19 @@ padding-inline-end: 0%;
 #filtrering {
 		justify-content: center;
 }
+
+button {
+	background: #B8C8C7;
+	border: none;
+}
+
+button:hover {
+	color:#F9F8F5;
+}
+
+button:selected {
+	color:#F9F8F5;
+}
 </style>
 
 <?php if ( ( is_page() && ! inspiro_is_frontpage() ) && ! has_post_thumbnail( get_queried_object_id() ) ) : ?>
@@ -115,8 +130,6 @@ padding-inline-end: 0%;
 <?php the_content();
 ?>
 
-<h1 id="overskrift">Hudpleje</h1>
-			<p>Her kan du se alle de produkter jeg fremstiller</p>
 			
 			<!-- <nav id="filtrering"><img data-projekt src="" alt=""></nav> -->
 			<section id="sorterings-knapper">
@@ -132,12 +145,12 @@ padding-inline-end: 0%;
 				
 
 			
-<h2 class="kategorititel">Alle produkter</h2>
+<!-- <h2 class="kategorititel">Alle produkter</h2> -->
 			
 <section id="produktcontainer"></section>
 			
 <template>
-	<article>				
+	<article class="grid">				
 		<h2></h2>
 		<img src="" alt=""class="billede">
 		<p class="beskrivelse"></p>
@@ -189,7 +202,7 @@ function addEventListenersToButtons(){
  
 function filtrering(){
 	console.log(this.dataset.produkt);
-	document.querySelector(".kategorititel").textContent = this.textContent;
+	// document.querySelector(".kategorititel").textContent = this.textContent;
 	filterProdukt = this.dataset.produkt;
 	console.log(filterProdukt);
 
@@ -211,12 +224,12 @@ function visProdukter(){
 		klon.querySelector("img").src = produkt.billede.guid;
 		klon.querySelector(".beskrivelse").textContent = produkt.kortbeskrivelse;
 		klon.querySelector(".pris").innerHTML = "Pris: " + produkt.pris + " kr";
-			klon.querySelector("article").addEventListener("click", () => {location.href = elm.link;
+
+		klon.querySelector(".grid").addEventListener("click", () => {location.href = produkt.link;
 		})
 		container.appendChild(klon);
 	}})	
 }
-
 
 async function getJson() {
 	console.log("getJson");
