@@ -17,21 +17,35 @@
 
 get_header(); ?>
 <style>
-      nav {
+	nav {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+		}
+
+    @media screen and (min-width:1025px) {
+		  nav {
         display: flex;
         justify-content: center;
         gap: 10px;
-      }
+    }}
+
       .valgt {
         background-color: rgb(245, 240, 168);
       }
-      section {
+      #produktcontainer {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 20px;
         padding-inline-start: 10%;
         padding-inline-end: 10%;
+		padding-bottom: 2%;
       }
+
+	  #produktcontainer h2 {
+		font-size: 1.7rem;
+	  }
+	  
       article {
         border: solid 1px black;
         padding: 20px;
@@ -73,6 +87,17 @@ get_header(); ?>
 		color: black;
 		text-align: center;
 	}
+
+	@media screen and (min-width:1025px) {
+	#produktcontainer {
+grid-template-columns: 1fr 1fr 1fr;
+padding-inline-start: 0%;
+padding-inline-end: 0%;
+	}}
+
+#filtrering {
+		justify-content: center;
+}
 </style>
 
 <?php if ( ( is_page() && ! inspiro_is_frontpage() ) && ! has_post_thumbnail( get_queried_object_id() ) ) : ?>
@@ -104,21 +129,19 @@ get_header(); ?>
     <button class="filter" data-kategori="haarpleje">Hårpleje</button>
     <button class="filter" data-kategori="drikkevarer">Creme Café</button> -->
   <!-- </nav> -->
-			
-	
+				
 
 			
-			<h2 class="kategorititel">Alle produkter</h2>
+<h2 class="kategorititel">Alle produkter</h2>
 			
-		<section id="produktcontainer"></section>
+<section id="produktcontainer"></section>
 			
 <template>
-				<article>
-					
-					<h2></h2>
-					<img src="" alt=""class="billede">
-					<p class="beskrivelse">Pris</p>
-					<p class="pris">Pris</p>
+	<article>				
+		<h2></h2>
+		<img src="" alt=""class="billede">
+		<p class="beskrivelse"></p>
+		<p class="pris"></p>
 </article>
 </template>
 </main><!-- #main -->
@@ -166,6 +189,7 @@ function addEventListenersToButtons(){
  
 function filtrering(){
 	console.log(this.dataset.produkt);
+	document.querySelector(".kategorititel").textContent = this.textContent;
 	filterProdukt = this.dataset.produkt;
 	console.log(filterProdukt);
 
@@ -185,15 +209,14 @@ function visProdukter(){
 		let klon = temp.cloneNode(true).content;
 		klon.querySelector("h2").textContent = produkt.title.rendered;
 		klon.querySelector("img").src = produkt.billede.guid;
-		klon.querySelector("p").innerHTML = produkt.pris + " kr";
+		klon.querySelector(".beskrivelse").textContent = produkt.kortbeskrivelse;
+		klon.querySelector(".pris").innerHTML = "Pris: " + produkt.pris + " kr";
 			klon.querySelector("article").addEventListener("click", () => {location.href = elm.link;
 		})
-
 		container.appendChild(klon);
-	}})
-	
-
+	}})	
 }
+
 
 async function getJson() {
 	console.log("getJson");
