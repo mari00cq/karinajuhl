@@ -120,33 +120,28 @@ while ( have_posts() ) :
 <script>
 
 console.log("scriptStart");
-        const dburl = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/produkt/"+<?php echo get_the_ID() ?>;
-        let produkt;
-        console.log(<?php echo get_the_ID() ?>)
-     
+const dburl = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/produkt/"+<?php echo get_the_ID() ?>;
+let produkt;
 
-        let produkter;
+document.addEventListener("DOMContentLoaded", loadJson);
 
-        document.addEventListener("DOMContentLoaded", loadJson);
+async function loadJson() {
+    console.log("loadJson");
+    const jsonData = await fetch(dburl);
+    produkt = await jsonData.json();
+       
+    visProdukt(produkt);
+    console.log(produkt);
+}
 
-        async function loadJson() {
-            console.log("loadJson");
-            const jsonData = await fetch(dburl);
-            produkt = await jsonData.json();
-
-           
-            visProdukt(produkt);
-            console.log(produkt);
-        }
-
-        function visProdukt() {
-            console.log("visProdukt");
-            document.querySelector("h2").textContent = produkt.title.rendered;
-            document.querySelector(".image").src = produkt.billede.guid;
-            document.querySelector(".beskrivelse").textContent = produkt.langbeskrivelse;
-            document.querySelector(".ingredienser").textContent = produkt.ingredienser;
-            document.querySelector(".pris").textContent = produkt.pris + " kr";
-        }
+function visProdukt() {
+    console.log("visProdukt");
+    document.querySelector("h2").textContent = produkt.title.rendered;
+    document.querySelector(".image").src = produkt.billede.guid;
+    document.querySelector(".beskrivelse").textContent = produkt.langbeskrivelse;
+    document.querySelector(".ingredienser").textContent = produkt.ingredienser;
+    document.querySelector(".pris").textContent = produkt.pris + " kr";
+}
 </script>
 
 <?php
