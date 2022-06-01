@@ -17,88 +17,86 @@
 
 get_header(); ?>
 <style>
-	nav {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 10px;
-		margin-bottom: 3%;
-		}
+nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+	margin-bottom: 3%;
+}
 
-    @media screen and (min-width:1025px) {
-		  nav {
+@media screen and (min-width:1025px) {
+	  nav {
         display: flex;
         justify-content: center;
         gap: 10px;
-    }}
+    }
+}
 
-      .valgt {
-        background-color: rgb(245, 240, 168);
-      }
-      #produktcontainer {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-        padding-inline-start: 10%;
-        padding-inline-end: 10%;
-		padding-bottom: 2%;
-		cursor: pointer;
-      }
+.valgt {
+    background-color: rgb(245, 240, 168);
+}
+      
+#produktcontainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding-inline-start: 10%;
+    padding-inline-end: 10%;
+	padding-bottom: 2%;
+	cursor: pointer;
+}
 
-	  #produktcontainer h2 {
-		font-size: 1.7rem;
-	  }
+#produktcontainer h2 {
+	font-size: 1.7rem;
+}
 	  
-      article {
-        border: solid 1px black;
-        padding: 20px;
-        background-color: whitesmoke;
-      }
-	  	#produkt-oversigt {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		grid-gap: 30px;
+article {
+	border: solid 1px black;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+#produkt-oversigt {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-gap: 30px;
+}
 	
-	}
-	#produkt-oversigt img {
-		padding: 10px;
-		object-fit: cover;
-
-
+#produkt-oversigt img {
+	padding: 10px;
+	object-fit: cover;
+}
 	
-	}
-	.container_article {
-		border: 2px solid black;
-		/* background-color: darkgreen; */
-		height: 400px;
-
+.container_article {
+	border: 2px solid black;
+	height: 400px;
+}
 	
-	}
-	
-	.container_article h2 {
-		padding: 10px;
-	}
+.container_article h2 {
+	padding: 10px;
+}
 
-	.container_article img{
-		width: 400px;
-		height: 300px;
-		align: center;
-		
+.container_article img{
+	width: 400px;
+	height: 300px;
+	align: center;
+}
 
-	}
-	.container_article h2{
-		color: black;
-		text-align: center;
-	}
+.container_article h2{
+	color: black;
+	text-align: center;
+}
 
-	@media screen and (min-width:1025px) {
+@media screen and (min-width:1025px) {
 	#produktcontainer {
-grid-template-columns: 1fr 1fr 1fr;
-padding-inline-start: 0%;
-padding-inline-end: 0%;
-	}}
+	grid-template-columns: 1fr 1fr 1fr;
+	padding-inline-start: 0%;
+	padding-inline-end: 0%;
+	}
+}
 
 #filtrering {
-		justify-content: center;
+	justify-content: center;
 }
 
 button {
@@ -107,10 +105,6 @@ button {
 }
 
 button:hover {
-	color:#F9F8F5;
-}
-
-button:selected {
 	color:#F9F8F5;
 }
 </style>
@@ -126,65 +120,43 @@ button:selected {
 
 		<main id="main" class="site-main" role="main">
 
-			<!-- */ her skriver vi at elementors indhold skal bevares /* -->
+<!-- */ her skriver vi at elementors indhold skal bevares /* -->
 <?php the_content();
 ?>
 
 			
-			<!-- <nav id="filtrering"><img data-projekt src="" alt=""></nav> -->
-			<section id="sorterings-knapper">
-				<nav id="filtrering"><button data-produkt="alle">Alle</button></nav>
-			</section>
-				 <!-- <nav> -->
-    <!-- <button class="filter valgt" data-kategori="alle">Alle</button>
-    <button class="filter" data-kategori="ansigtspleje">Ansigtspleje</button>
-    <button class="filter" data-kategori="kropspleje">Kropspleje</button>
-    <button class="filter" data-kategori="haarpleje">Hårpleje</button>
-    <button class="filter" data-kategori="drikkevarer">Creme Café</button> -->
-  <!-- </nav> -->
-				
-
+	<section id="sorterings-knapper">
+		<nav id="filtrering"><button data-produkt="alle">Alle</button></nav>
+	</section>
 			
-<!-- <h2 class="kategorititel">Alle produkter</h2> -->
+	<section id="produktcontainer"></section>
 			
-<section id="produktcontainer"></section>
-			
-<template>
-	<article class="grid">				
-		<h2></h2>
-		<img src="" alt=""class="billede">
-		<p class="beskrivelse"></p>
-		<p class="pris"></p>
-</article>
-</template>
+	<template>
+		<article class="grid">				
+			<h2></h2>
+			<img src="" alt=""class="billede">
+			<p class="beskrivelse"></p>
+			<p class="pris"></p>
+		</article>
+	</template>
 </main><!-- #main -->
 		
 <script>
+let produkter;
+let categories;
+let filterProdukt ="alle";
+document.addEventListener("DOMContentLoaded", start);
 
-
-				let produkter;
-				let categories;
-				let filterProdukt ="alle";
-				
-				// const liste = document.querySelector("#produktcontainer");
-				// const skabelon = document.querySelector("template");
-				// let filterProdukt = "alle";
-				document.addEventListener("DOMContentLoaded", start);
-
-				function start() {
-					console.log("start");
-					getJson();
-				}
-
-
+function start() {
+	console.log("start");
+	getJson();
+}
 
 const dbUrl = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/produkt?per_page=100";
 const catUrl = "http://mariasattrup.dk/kea/karinajuhl/wp-json/wp/v2/categories";
 
-
-// let filter = "alle";
 let temp = document.querySelector("template");
-	let container = document.querySelector("#produktcontainer");
+let container = document.querySelector("#produktcontainer");
 
 function opretKnapper(){
 	categories.forEach(cat =>{
@@ -205,7 +177,6 @@ function filtrering(){
 	// document.querySelector(".kategorititel").textContent = this.textContent;
 	filterProdukt = this.dataset.produkt;
 	console.log(filterProdukt);
-
 	visProdukter();
 }
 
@@ -216,9 +187,6 @@ function visProdukter(){
 	// Med parseInt laver vi tekst om til tal
 	produkter.forEach(produkt => {
 		if (filterProdukt=="alle"||produkt.categories.includes(parseInt(filterProdukt))){
- 
-		
-
 		let klon = temp.cloneNode(true).content;
 		klon.querySelector("h2").textContent = produkt.title.rendered;
 		klon.querySelector("img").src = produkt.billede.guid;
@@ -239,40 +207,10 @@ produkter = await data.json();
 categories = await catdata.json();
 console.log(categories);
 console.log(produkter);
-
 opretKnapper();
 visProdukter();
 
 } 
-
-// function visProdukter(filter) {
-
-// 	liste.innerHTML = "";
-// 	produkt.forEach(elm => {
-		
-// 		console.log(elm.verdensml.includes(parseInt(filter)));
-// 		if (elm.verdensml.includes(parseInt(filter)) || filter == "alle") {
-// 		console.log("foreach kører på produkter");
-// 		const klon = skabelon.cloneNode(true).content;
-// 		klon.querySelector("h2").textContent = elm.title.rendered;
-// 		klon.querySelector("img").src = elm.billede.guid;
-
-// 		klon.querySelector("article").addEventListener("click", () => {location.href = elm.link;
-// 		})
-
-// 		liste.appendChild(klon);
-// 	}})
-// }
-
-// function filtrerProdukter() {
-// 	filter = this.dataset.produkt;
-// 	document.querySelector(".kategorititel").textContent = this.getAttribute("name");
-// 	produkt.forEach(elm => {
-// 		console.log(elm.verdensml);
-// 	})
-
-// 	visProjekter(filter);
-// }
 </script>
 <?php if ( ( is_page() && ! inspiro_is_frontpage() ) && ! has_post_thumbnail( get_queried_object_id() ) ) : ?>
 

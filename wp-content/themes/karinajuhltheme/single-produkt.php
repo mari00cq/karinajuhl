@@ -142,7 +142,6 @@ console.log("scriptStart");
         function visProdukt() {
             console.log("visProdukt");
             document.querySelector("h2").textContent = produkt.title.rendered;
-            // console.log(projekt.navn);
             document.querySelector(".image").src = produkt.billede.guid;
             document.querySelector(".beskrivelse").textContent = produkt.langbeskrivelse;
             document.querySelector(".ingredienser").textContent = produkt.ingredienser;
