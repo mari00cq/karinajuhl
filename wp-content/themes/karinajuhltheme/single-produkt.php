@@ -14,12 +14,17 @@ get_header(); ?>
 
 <style>
 
+#content {
+ padding-top: 0 !important;
+}
+
 .entry-footer {
     display:none;
 }
 
-article {
-    background: #E3E0DD;
+article.single {
+    background: #F5F0EB;
+    padding-top: 3%;
 }
 
 @media screen and (min-width:1025px) {
@@ -36,6 +41,16 @@ gap: 10px;
     grid-column: 1/2;
     place-self: center;
     max-width: 75%;
+    display:grid;
+    align-items: center;
+}
+
+.image2 {
+    max-width: 80%;
+    place-self:center;
+    background: whitesmoke;
+margin-top: 3%;
+transform: rotate(-90deg);
 }
 
 article .beskrivelse {
@@ -50,18 +65,17 @@ section{
     text-align: right;
 }
 
-a {
+.kontaktmig {
     color: #394B3F;
-}
-a:hover {
-    color:#F9F8F5;
+    text-decoration: underline;
 }
 </style>
 <main id="main" class="site-main container-fluid" role="main">
 
 <article class="single">
     <div class="emg">
-            <img class="image" src="" alt="">
+            <img class="image1" src="" alt="">
+            <img class="image2" src="" alt="">
         </div>
         <section>
             <h2></h2>
@@ -70,9 +84,9 @@ a:hover {
             <p class="ingredienser"></p>
             <h3>Pris</h3>
             <b><p class="pris"></p></b>
-            <h4><a href="http://www.mariasattrup.dk/kea/karinajuhl/kontakt/">Kontakt mig</a> for spørgsmål og bestilling!</h4>
+            <h4><a class="kontaktmig" href="http://www.mariasattrup.dk/kea/karinajuhl/kontakt/">Kontakt mig</a> for spørgsmål og bestilling!</h4>
             <div class="cont">
-               <a class="knap" href="http://www.mariasattrup.dk/kea/karinajuhl/hudpleje/">Tilbage</a>
+               <a class="knap" href="http://www.mariasattrup.dk/kea/karinajuhl/hudpleje/"><button>Tilbage</button></a>
             </div>
         </section>
     </article>
@@ -137,7 +151,8 @@ async function loadJson() {
 function visProdukt() {
     console.log("visProdukt");
     document.querySelector("h2").textContent = produkt.title.rendered;
-    document.querySelector(".image").src = produkt.billede.guid;
+    document.querySelector(".image1").src = produkt.billede.guid;
+    document.querySelector(".image2").src = produkt.cremebillede.guid;
     document.querySelector(".beskrivelse").textContent = produkt.langbeskrivelse;
     document.querySelector(".ingredienser").textContent = produkt.ingredienser;
     document.querySelector(".pris").textContent = produkt.pris + " kr";

@@ -21,24 +21,21 @@
 	}
 
 	.site-info .copyright {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
+		justify-content: center;
 	}
 
 	.copyright > span:nth-child(1){
-		grid-column: 1/2;
-		place-self: center;
+		font-size: 0.9rem;
 	}
 
-	.copyright > span:nth-child(2){
-		grid-column: 1/3;
+	/* .copyright > span:nth-child(2){
+		grid-row: 2/3;
 		place-self: center;
-	}
+	} */
 
 	.copyright > span:nth-child(3){
-		grid-column: 2/3;
-		place-self: center;	
-		grid-row: 1/2;
+		font-size: 0.9rem;
 	}
 
 	@media screen and (min-width:810px) {
@@ -93,7 +90,7 @@
 
 	.facebook {
 		background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/Facebook-1.png");
-		width: 13%;
+		width: 15%;
 		aspect-ratio: 55/99;
 		background-size: contain;
 		background-repeat: no-repeat;
@@ -101,7 +98,7 @@
 
 	.instagram {
 		background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/Instagarm.png");
-		width: 25%;
+		width: 27%;
 		aspect-ratio: 211/208;
 		background-size: contain;
 		background-repeat: no-repeat;
@@ -142,7 +139,7 @@
 </div><!-- .site-info -->
 <style>
       #colophon {
-  background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/05/Image-2-1.jpg");
+  background-image: url("http://www.mariasattrup.dk/kea/karinajuhl/wp-content/uploads/2022/06/Image-2-1.jpg");
   background-repeat: no-repeat;
     background-size: cover;
 

@@ -45,6 +45,12 @@ require INSPIRO_THEME_DIR . 'inc/classes/class-inspiro-enqueue-scripts.php';
  */
 require INSPIRO_THEME_DIR . 'inc/classes/class-inspiro-after-setup-theme.php';
 
+add_filter( 'elementor_pro/custom_fonts/font_display', function( $current_value, $font_family, $data ) {
+
+	return 'swap';
+	
+	}, 10, 3 );
+
 /**
  * Handle SVG icons.
  */

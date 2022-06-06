@@ -39,7 +39,7 @@ nav {
 #produktcontainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 35px;
     padding-inline-start: 10%;
     padding-inline-end: 10%;
 	padding-bottom: 2%;
@@ -47,7 +47,7 @@ nav {
 }
 
 #produktcontainer h2 {
-	font-size: 1.7rem;
+	font-size: 1.5rem;
 }
 	  
 article {
@@ -97,15 +97,6 @@ article {
 
 #filtrering {
 	justify-content: center;
-}
-
-button {
-	background: #B8C8C7;
-	border: none;
-}
-
-button:hover {
-	color:#F9F8F5;
 }
 </style>
 
