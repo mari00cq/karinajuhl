@@ -138,6 +138,13 @@ let categories;
 let filterProdukt ="alle";
 document.addEventListener("DOMContentLoaded", start);
 
+//   let img = document.querySelector('img');
+//     let start = img.src;
+//     let hover = img.getAttribute('data-hover'); //specified in img tag
+
+//     img.onmouseover = () => { img.src = hover; }
+//     img.onmouseout = () => { img.src = start; } //to revert back to start
+
 function start() {
 	console.log("start");
 	getJson();
